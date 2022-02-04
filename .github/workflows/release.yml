@@ -23,3 +23,10 @@ jobs:
         uses: helm/chart-releaser-action@v1.1.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Run chart-releaser ory
+        uses: helm/chart-releaser-action@v1.1.0
+        with:
+          charts_dir: charts/ory/helm/charts
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
