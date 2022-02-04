@@ -1,0 +1,173 @@
+apiVersion: v1
+entries:
+  example-idp:
+  - apiVersion: v2
+    appVersion: 1.4.6
+    created: "2022-02-04T18:02:14.71071712Z"
+    description: A Helm chart for deploying the reference implementation for the User Login and Consent Flow in Kubernetes
+    digest: ac3851c6db33cdaaf78fe987ad966776010495809c652ea2c1b2abbfd69e6c49
+    name: example-idp
+    type: application
+    urls:
+    - https://github.com/Lula-Technologies-Inc/helm-charts/releases/download/example-idp-0.21.7/example-idp-0.21.7.tgz
+    version: 0.21.7
+  hydra:
+  - apiVersion: v2
+    appVersion: v1.10.5
+    created: "2022-02-04T18:02:14.887248816Z"
+    dependencies:
+    - alias: hydra-maester
+      condition: maester.enabled
+      name: hydra-maester
+      repository: file://../hydra-maester
+      version: 0.21.7
+    description: A Helm chart for deploying ORY Hydra in Kubernetes
+    digest: 7b36deacba970f596e6a37066d74ada4e76ff20bde14d33df581c14207a01b55
+    home: https://www.ory.sh/
+    icon: https://raw.githubusercontent.com/ory/docs/master/docs/static/img/logo-hydra.svg
+    keywords:
+    - oauth2
+    - openid-connect
+    - openid
+    - oidc
+    - op
+    - api-security
+    - security
+    maintainers:
+    - email: hi@ory.sh
+      name: ORY Team
+      url: https://www.ory.sh/
+    name: hydra
+    sources:
+    - https://github.com/ory/hydra
+    - https://github.com/ory/k8s
+    type: application
+    urls:
+    - https://github.com/Lula-Technologies-Inc/helm-charts/releases/download/hydra-0.21.7/hydra-0.21.7.tgz
+    version: 0.21.7
+  hydra-maester:
+  - apiVersion: v2
+    appVersion: v0.0.23
+    created: "2022-02-04T18:02:15.017228685Z"
+    description: A Helm chart for Kubernetes
+    digest: d22980c8bd026d1e9dcb10485390d580e41839d2f8d41343010d813c5919197c
+    icon: https://raw.githubusercontent.com/ory/docs/master/docs/static/img/logo-hydra.svg
+    name: hydra-maester
+    type: application
+    urls:
+    - https://github.com/Lula-Technologies-Inc/helm-charts/releases/download/hydra-maester-0.21.7/hydra-maester-0.21.7.tgz
+    version: 0.21.7
+  keto:
+  - apiVersion: v2
+    appVersion: v0.7.0
+    created: "2022-02-04T18:02:15.172894244Z"
+    description: Access Control Policies as a Server
+    digest: 92a5b55e7c7e017e37c23fb29c6561860f6c21fe7ef26a95fc59749b8c070cb3
+    home: https://www.ory.sh/keto/
+    icon: https://raw.githubusercontent.com/ory/docs/master/docs/static/img/logo-keto.svg
+    keywords:
+    - rbac
+    - hrbac
+    - acl
+    - iam
+    - api-security
+    - security
+    maintainers:
+    - email: hi@ory.sh
+      name: ORY Team
+      url: https://www.ory.sh/
+    name: keto
+    sources:
+    - https://github.com/ory/keto
+    - https://github.com/ory/k8s
+    type: application
+    urls:
+    - https://github.com/Lula-Technologies-Inc/helm-charts/releases/download/keto-0.21.7/keto-0.21.7.tgz
+    version: 0.21.7
+  kratos:
+  - apiVersion: v2
+    appVersion: v0.8.0-alpha.3
+    created: "2022-02-04T18:02:15.290525574Z"
+    description: A ORY Kratos Helm chart for Kubernetes
+    digest: 7f9e580580ec42499678e4c9ec76dd0de8dd93f1dfb932e2acde079030123f95
+    icon: https://raw.githubusercontent.com/ory/docs/master/docs/static/img/logo-kratos.svg
+    name: kratos
+    type: application
+    urls:
+    - https://github.com/Lula-Technologies-Inc/helm-charts/releases/download/kratos-0.21.7/kratos-0.21.7.tgz
+    version: 0.21.7
+  kratos-selfservice-ui-node:
+  - apiVersion: v2
+    appVersion: v0.8.0-alpha.3
+    created: "2022-02-04T18:02:15.418110416Z"
+    description: A Helm chart for ORY Kratos's example ui for Kubernetes
+    digest: 81b2720a3f10028f5a4d3a8bed41e575da40f4450d8ad05b5c8864d46a84a19e
+    name: kratos-selfservice-ui-node
+    type: application
+    urls:
+    - https://github.com/Lula-Technologies-Inc/helm-charts/releases/download/kratos-selfservice-ui-node-0.21.7/kratos-selfservice-ui-node-0.21.7.tgz
+    version: 0.21.7
+  oathkeeper:
+  - apiVersion: v2
+    appVersion: v0.38.9-beta.1
+    created: "2022-02-04T18:02:15.549077296Z"
+    dependencies:
+    - alias: oathkeeper-maester
+      condition: maester.enabled
+      name: oathkeeper-maester
+      repository: file://../oathkeeper-maester
+      version: 0.21.7
+    description: A Helm chart for deploying ORY Oathkeeper in Kubernetes
+    digest: d7c9b09b4b8fab21367162dc6ab696bb3885840e5e3ec09129a3096b136c6b04
+    home: https://www.ory.sh/
+    icon: https://raw.githubusercontent.com/ory/docs/master/docs/static/img/logo-oathkeeper.svg
+    keywords:
+    - zero-trust
+    - beyond-corp
+    - access-control
+    - reverse-proxy
+    - nginx
+    - envoy
+    - ambassador
+    - auth-filter
+    maintainers:
+    - email: office@ory.sh
+      name: ORY Team
+      url: https://www.ory.sh/
+    name: oathkeeper
+    sources:
+    - https://github.com/ory/oathkeeper
+    - https://github.com/ory/k8s
+    type: application
+    urls:
+    - https://github.com/Lula-Technologies-Inc/helm-charts/releases/download/oathkeeper-0.21.7/oathkeeper-0.21.7.tgz
+    version: 0.21.7
+  oathkeeper-maester:
+  - apiVersion: v1
+    appVersion: v0.1.4
+    created: "2022-02-04T18:02:15.684484927Z"
+    description: A Helm chart for deploying ORY Oathkeeper Rule Controller in Kubernetes
+    digest: 411a340b26b1ca7e3cf925d9dd373a6f7c28092da51ec6517121f738a443d2b7
+    home: https://www.ory.sh/
+    icon: https://raw.githubusercontent.com/ory/docs/master/docs/static/img/logo-oathkeeper.svg
+    keywords:
+    - zero-trust
+    - beyond-corp
+    - access-control
+    - reverse-proxy
+    - nginx
+    - envoy
+    - ambassador
+    - auth-filter
+    maintainers:
+    - email: office@ory.sh
+      name: ORY Team
+      url: https://www.ory.sh/
+    name: oathkeeper-maester
+    sources:
+    - https://github.com/ory/oathkeeper
+    - https://github.com/ory/k8s
+    urls:
+    - https://github.com/Lula-Technologies-Inc/helm-charts/releases/download/oathkeeper-maester-0.21.7/oathkeeper-maester-0.21.7.tgz
+    version: 0.21.7
+generated: "2022-02-04T18:02:14.571279944Z"
