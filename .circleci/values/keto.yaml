@@ -1,0 +1,15 @@
+---
+keto:
+  autoMigrate: true
+  config:
+    dsn: "postgres://postgres:ory@postgresql.default.svc.cluster.local/ory?sslmode=disable&max_conn_lifetime=10s"
+ingress:
+  read:
+    enabled: true
+  write:
+    enabled: true
+extraLabels:
+  ory.sh/test: keto
+deployment:
+  annotations:
+    ory.sh/test-annotations: "true"
