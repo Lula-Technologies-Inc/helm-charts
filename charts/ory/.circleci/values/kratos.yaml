@@ -1,0 +1,93 @@
+---
+autoscaling:
+  enabled: false
+kratos:
+  autoMigrate: true
+  identitySchemas:
+    "identity.default.schema.json": |
+      {
+         "$id": "https://schemas.ory.sh/presets/kratos/identity.email.schema.json",
+         "$schema": "http://json-schema.org/draft-07/schema#",
+         "title": "Person",
+         "type": "object",
+         "properties": {
+            "traits": {
+               "type": "object",
+               "properties": {
+                  "email": {
+                     "type": "string",
+                     "format": "email",
+                     "title": "E-Mail",
+                     "ory.sh/kratos": {
+                        "credentials": {
+                           "password": {
+                              "identifier": true
+                           }
+                        },
+                        "recovery": {
+                           "via": "email"
+                        },
+                        "verification": {
+                           "via": "email"
+                        }
+                     }
+                  }
+               },
+               "required": [
+                  "email"
+               ],
+               "additionalProperties": false
+            }
+         }
+      }
+  config:
+    # ciphers: 
+    #   algorithm: aes
+    dsn: "postgres://postgres:ory@postgresql.default.svc.cluster.local/ory?sslmode=disable&max_conn_lifetime=10s"
+    selfservice:
+      default_browser_return_url: http://127.0.0.1:4455/
+      methods:
+        password:
+          enabled: true
+    log:
+      level: debug
+    secrets:
+      default:
+        - PLEASE-CHANGE-ME-I-AM-VERY-INSECURE
+        - "OG5XbmxXa3dYeGplQXpQanYxeEFuRUFa"
+        - "foo bar 123 456 lorem"
+        - "foo bar 123 456 lorem 1"
+        - "foo bar 123 456 lorem 2"
+        - "foo bar 123 456 lorem 3"
+    hashers:
+      argon2:
+        parallelism: 1
+        memory: 128MB
+        iterations: 2
+        salt_length: 16
+        key_length: 16
+    identity:
+      default_schema_url: file:///etc/config/identity.default.schema.json
+    courier:
+      smtp:
+        connection_uri: smtps://test:test@mailslurper:1025/?skip_ssl_verify=true
+ingress:
+  admin:
+    enabled: true
+  public:
+    enabled: true
+deployment:
+  extraInitContainers: |
+    - name: "hello-world"
+      image: "alpine:latest"
+      command: ["/bin/sh"]
+      args: ["-c", "echo hello, world!"]
+  extraContainers: |
+    - name: "hello-world-electric-boogaloo"
+      image: "alpine:latest"
+      command: ["/bin/sh"]
+      args: ["-c", "sleep infinity"]
+  extraArgs:
+    - --sqa-opt-out
+  labels:
+    ory.sh/test: kratos
