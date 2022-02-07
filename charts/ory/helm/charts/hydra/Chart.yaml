@@ -23,7 +23,7 @@ maintainers: # (optional)
 type: application
 dependencies:
   - name: hydra-maester
-    version: 0.21.8
+    version: 0.21.7
     condition: maester.enabled
     alias: hydra-maester
     repository: file://../hydra-maester
