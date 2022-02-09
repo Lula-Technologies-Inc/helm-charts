@@ -1,4 +1,21 @@
 {{- if .Values.kratos.autoMigrate }}
+{{- if .Values.job.serviceAccount.create -}}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ include "kratos.automigrationServiceAccountName" . }}
+  labels:
+    {{- include "kratos.labels" . | nindent 4 }}
+  annotations:
+    {{- with .Values.job.serviceAccount.annotations }}
+      {{- toYaml . | nindent 4 }}
+    {{- end }}
+    helm.sh/hook-weight: "0"
+    helm.sh/hook: "pre-install, pre-upgrade"
+    helm.sh/hook-delete-policy: "before-hook-creation,hook-succeeded"
+{{- end }}
+
 ---
 apiVersion: batch/v1
 kind: Job
@@ -37,7 +54,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      automountServiceAccountToken: {{ .Values.automountServiceAccountToken }}
+      automountServiceAccountToken: {{ .Values.job.automountServiceAccountToken }}
       containers:
       - name: {{ .Chart.Name }}-automigrate
         image: {{ include "kratos.image" . }}
@@ -73,5 +90,6 @@ spec:
 {{ toYaml .Values.deployment.extraVolumes | indent 8 }}
       {{- end }}
       shareProcessNamespace: {{ .Values.job.shareProcessNamespace }}
+      serviceAccountName: {{ include "kratos.automigrationServiceAccountName" . }}
   backoffLimit: 10
 {{- end }}

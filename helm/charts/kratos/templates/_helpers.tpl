@@ -158,3 +158,14 @@ Create the name of the service account to use
 {{- default "default" .Values.deployment.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Create the name of the service account to use for automigrations
+*/}}
+{{- define "kratos.automigrationServiceAccountName" -}}
+{{- if .Values.job.serviceAccount.create }}
+{{- default (printf "%s-migrate" (include "kratos.fullname" .)) .Values.job.serviceAccount.name }}
+{{- else }}
+{{- default "default" .Values.job.serviceAccount.name }}
+{{- end }}
+{{- end }}

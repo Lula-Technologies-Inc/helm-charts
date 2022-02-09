@@ -86,3 +86,14 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Create the name of the service account to use for automigrations
+*/}}
+{{- define "keto.automigrationServiceAccountName" -}}
+{{- if .Values.job.serviceAccount.create }}
+{{- default (printf "%s-migrate" (include "keto.fullname" .)) .Values.job.serviceAccount.name }}
+{{- else }}
+{{- default "default" .Values.job.serviceAccount.name }}
+{{- end }}
+{{- end }}
