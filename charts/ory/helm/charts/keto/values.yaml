@@ -53,6 +53,9 @@ job:
   # kubernetes.io/ingress.class: nginx
   # kubernetes.io/tls-acme: "true"
 
+  # https://github.com/kubernetes/kubernetes/issues/57601
+  automountServiceAccountToken: true
+
   # -- If you want to add extra sidecar containers. 
   extraContainers: {}
   # extraContainers: |
@@ -67,6 +70,18 @@ job:
   #       command: [...]
 
   shareProcessNamespace: false
+
+  # -- Specify the serviceAccountName value.
+  # In some situations it is needed to provides specific permissions to Keto auto-migrations
+  # Like for example installing Keto on a cluster with a PosSecurityPolicy and Istio.
+  # Uncoment if it is needed to provide a ServiceAccount for the Keto auto-migrations.
+  serviceAccount:
+    # -- Specifies whether a service account should be created
+    create: true
+    # -- Annotations to add to the service account
+    annotations: {}
+    # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname template
+    name: ""
 
 ingress:
   read:
