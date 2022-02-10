@@ -356,6 +356,26 @@ statefulset:
     format: json
     level: trace
 
+  # -- If you want to add extra sidecar containers.
+  extraContainers: {}
+  # extraContainers: |
+  #  - name: ...
+  #    image: ...
+
+  # -- Specify the serviceAccountName value.
+  # In some situations it is needed to provides specific permissions to Kratos auto-migrations
+  # Like for example installing Kratos on a cluster with a PosSecurityPolicy and Istio.
+  # Uncoment if it is needed to provide a ServiceAccount for the Kratos auto-migrations.
+  serviceAccount:
+    # -- Specifies whether a service account should be created
+    create: true
+    # -- Annotations to add to the service account
+    annotations: {}
+    # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname template
+    name: ""
+
+  automountServiceAccountToken: true
+
 # -- Configure node affinity
 affinity: {}
 # -- Node labels for pod assignment.

@@ -169,3 +169,14 @@ Create the name of the service account to use for automigrations
 {{- default "default" .Values.job.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Create the name of the service account to use for courier
+*/}}
+{{- define "kratos.courierServiceAccountName" -}}
+{{- if .Values.statefulset.serviceAccount.create }}
+{{- default (printf "%s-courier" (include "kratos.fullname" .)) .Values.statefulset.serviceAccount.name }}
+{{- else }}
+{{- default "default" .Values.statefulset.serviceAccount.name }}
+{{- end }}
+{{- end }}
