@@ -1,3 +1,17 @@
+{{- if .Values.statefulset.serviceAccount.create -}}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ include "kratos.courierServiceAccountName" . }}
+  labels:
+    {{- include "kratos.labels" . | nindent 4 }}
+  {{- with .Values.statefulset.serviceAccount.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+{{- end }}
+
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -35,6 +49,8 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      automountServiceAccountToken: {{ .Values.statefulset.automountServiceAccountToken }}
+      serviceAccountName: {{ include "kratos.courierServiceAccountName" . }}
       containers:
         - name: {{ include "kratos.fullname" . }}-courier
           image: {{ include "kratos.image" . }}
@@ -93,8 +109,8 @@ spec:
             {{- end }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-        {{- if .Values.job.extraContainers }}
-{{ tpl .Values.job.extraContainers . | indent 8 }}
+        {{- if .Values.statefulset.extraContainers }}
+{{ tpl .Values.statefulset.extraContainers . | indent 8 }}
         {{- end }}
       {{- if .Values.deployment.extraInitContainers }}
       initContainers:
